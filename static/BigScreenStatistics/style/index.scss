@@ -1,0 +1,14 @@
+.left_content,
+.right_content {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(8, 26, 47, .7);
+
+  .el-carousel {
+    height: 100%;
+
+    .el-carousel__container {
+      height: 100%;
+    }
+  }
+}

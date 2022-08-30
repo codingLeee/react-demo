@@ -1,0 +1,443 @@
+* {
+  padding: 0;
+  margin: 0;
+  touch-action: none !important;
+  font-family: SourceHanSansCN-Normal;
+  font-weight: 400;
+  // color: #fff;
+}
+
+li {
+  list-style-type: none;
+}
+
+html,
+body,
+#app,
+.el-container {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+  overflow: hidden;
+}
+
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 文字省略 */
+.textOmit {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+iframe {
+  width: 100%;
+  height: 98%;
+}
+
+// 清除浮动
+.fix {
+  *zoom: 1;
+
+  &:after,
+  &:before {
+    display: block;
+    content: "clear";
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  box-sizing: border-box;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #20437B;
+}
+
+::webkit-scrollbar-corner {
+  background-color: #001E38 !important; // 颜色
+}
+
+// mopbox图标 
+.mapboxgl-ctrl-bottom-left {
+  display: none;
+}
+
+
+// 内容框架样式
+.system-container {
+  padding-bottom: 10px;
+  box-sizing: border-box;
+
+  .query-header {
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+
+    .queryBox {
+      .box {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 60px;
+        margin-bottom: 30px;
+        // >span{
+        //   display: inline-block;
+        //   vertical-align: middle;
+        //   width: 150px;
+        //   text-align: right;
+        // }
+      }
+    }
+
+    .btnBox {
+      display: flex;
+    }
+
+  }
+
+  .select-event {
+    margin-bottom: 30px;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #101f70;
+
+  .wrapper_layout {
+    display: flex;
+    height: calc(100% - 76px);
+    padding: 0 30px;
+
+    .wrapper_content {
+      flex: 1;
+      width: calc(100% - 120px);
+    }
+
+    .wrapper_content_view {
+      height: calc(100% - 90px);
+    }
+  }
+}
+
+
+// 事件详情
+.event_detail {
+  .event_detail_base_info {
+    margin-bottom: 35px;
+    font-size: 16px;
+    line-height: 30px;
+
+    .el-col {
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  // 事件日志
+  .event_log_content {
+    width: calc(50% - 100px);
+    margin: 0 auto;
+    color: #fff;
+
+    .event_log_content_tit {
+      font-size: 20px;
+      margin-bottom: 15px;
+      margin-left: -15px;
+    }
+
+    .event_log_time {
+      text-align: right;
+      float: left;
+      margin-left: -165px;
+    }
+
+    .event_log_info {
+      background-color: #3C59C3;
+      border-radius: 4px;
+      padding: 15px 20px;
+      width: 300px;
+      position: relative;
+      line-height: 30px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        border: 10px solid transparent;
+        border-right-color: #3C59C3;
+        right: 100%;
+        top: 20px;
+      }
+    }
+  }
+
+  // 事件信息
+  .event_info_content {
+    padding: 23px 25px;
+    background-color: #2740A3;
+    color: #fff;
+  }
+
+  // 处理信息
+  .process_info_content {
+    color: #8BE5FF;
+    padding: 20px;
+    background-color: #2740A3;
+    border: 1PX solid #5867F0;
+    border-radius: 4px;
+    margin: 15px 0 0 20px;
+    position: relative;
+
+    &::before {
+      content: "";
+      border: 11px solid transparent;
+      border-bottom-color: #5867F0;
+      position: absolute;
+      bottom: 100%;
+      left: 10%;
+    }
+
+    &::after {
+      content: "";
+      border: 10px solid transparent;
+      border-bottom-color: #2740A3;
+      position: absolute;
+      bottom: 100%;
+      left: calc(10% + 1PX);
+    }
+  }
+}
+
+.yellow {
+  color: rgb(243, 243, 12);
+}
+
+.red {
+  color: red;
+}
+
+.orange {
+  color: orange;
+}
+
+
+
+.chartTable {
+  width: 85%;
+  margin: 20px auto;
+}
+
+.chartForm {
+  margin: 0 20px;
+  color: #fff;
+
+  .el-form-item {
+    margin-bottom: 0;
+    
+    .el-select,
+    .el-input,
+    .el-input__inner {
+      height: 21px !important;
+      line-height: 21px !important;
+      font-size: 12px !important;
+
+      &:not(.el-range-editor) {
+        width: 100px !important;
+      }
+
+      &.el-range-editor {
+        width: 140px !important;
+      }
+
+      .el-input__suffix {
+        right: 0;
+      }
+
+      .el-input__icon,
+      .el-range-separator {
+        color: #fff;
+        font-size: 10px;
+        width: 20px;
+        height: 21px;
+        line-height: 21px;
+      }
+    }
+
+    // .el-input__inner {
+    //   box-sizing: border-box;
+
+    //   &:not(.el-range-editor),
+    //   &:not(.el-range-editor) {
+    //     padding-right: 20px;
+    //   }
+    // }
+
+    .el-radio {
+      margin-right: 10px;
+
+      .el-radio__inner {
+        width: 12px;
+        height: 12px;
+
+        &::after {
+          width: 4px !important;
+          height: 4px !important;
+        }
+      }
+
+      .el-radio__label {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+
+.calendarBox {
+  .return_calendar {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+
+    img {
+      cursor: pointer;
+      width: 20px;
+      height: 18px;
+    }
+  }
+
+  /deep/ .el-calendar {
+    height: 85%;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.6);
+
+    .el-calendar__header {
+      display: none;
+    }
+
+    .el-calendar__body {
+      padding: 20px 0;
+
+      .el-calendar-table {
+
+        th,
+        .el-calendar-day {
+          cursor: default;
+          text-align: center;
+          color: rgba(255, 255, 255, 0.6);
+          padding: 0;
+          line-height: 45px;
+          height: auto;
+          font-size: 20px;
+          background-color: transparent !important;
+        }
+
+        td {
+          cursor: default;
+          border: 0;
+          background-color: transparent !important;
+
+          &.prev,
+          &.next {
+            pointer-events: none;
+
+            .el-calendar-day {
+              color: rgba(255, 255, 255, 0.3);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #top5Container {
+    height: 100%;
+  }
+
+  .calendarBox_content_bt {
+    font-size: 16px;
+    color: #d6dee7;
+    padding: 0 35px;
+    display: flex;
+    align-items: center;
+
+    .calendarBox_content_bt_1 {
+      height: 30px;
+      line-height: 30px;
+      padding-left: 40px;
+      background: url(/static/ManageSystem/img/alarm_calendar_icon1.png) no-repeat left top;
+      background-size: 30px 30px;
+      margin-right: 15px;
+    }
+
+    .calendarBox_content_bt_2 {
+      text-align: center;
+      font-size: 24px;
+      color: #17bdfd;
+      width: 100px;
+      height: 38px;
+      line-height: 38px;
+      background: url(/static/ManageSystem/img/alarm_calendar_icon2.png) no-repeat left top;
+      background-size: 100% 100%;
+    }
+
+    .calendarBox_content_bt_3 {
+      flex: 1;
+    }
+  }
+}
+
+
+
+.alarm_num_legend_content {
+  font-size: 16px;
+  color: #d6dee7;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  .alarm_num_legend {
+    margin-left: 12px;
+    width: 144px;
+    height: 12px;
+    background: linear-gradient(90deg, #18c3ff, #d3cb40, #ff8c1b, #d30717);
+
+    span {
+      display: inline-block;
+      vertical-align: middle;
+      margin-top: 12px;
+
+      &:nth-child(1) {
+        float: left;
+      }
+
+      &:nth-child(2) {
+        float: right;
+      }
+    }
+  }
+}

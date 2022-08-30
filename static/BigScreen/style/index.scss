@@ -1,0 +1,728 @@
+/deep/ #bigScreenMap {
+  background-color: #343332;
+  color: #fff;
+}
+
+// 大屏布局样式表
+// 左右两侧图表
+/deep/ .right_content_bg,
+/deep/ .left_content_bg {
+  width: 413px;
+  position: absolute;
+  height: calc(100% - 92px);
+  z-index: 1;
+  top: 92px;
+}
+
+// 右侧图表
+/deep/ .right_content_bg {
+  right: 0;
+  background: linear-gradient(-90deg, #101121 26%, rgba(16, 17, 33, 0) 100%);
+
+}
+
+// 左侧图表
+/deep/ .left_content_bg {
+  left: 0;
+  background: linear-gradient(90deg, #101121 26%, rgba(16, 17, 33, 0) 100%);
+}
+
+/deep/ .right_content,
+/deep/ .left_content {
+  @extend .right_content_bg;
+  z-index: 2;
+  background: transparent;
+
+  display: flex;
+  flex-direction: column;
+
+  >div {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .toggle_content {
+    width: 100%;
+    padding-left: 65px;
+    box-sizing: border-box;
+    position: relative;
+  }
+}
+
+/deep/ .left_content {
+  left: 0;
+  right: auto;
+  flex-wrap: wrap-reverse;
+}
+
+/deep/ .right_content {
+  flex-wrap: wrap;
+
+  .toggle_content {
+    width: 100%;
+    padding: 0 65px 0 0;
+  }
+}
+
+// 头部内容
+/deep/ .top_content {
+  padding: 0 34px 0 66px;
+  height: 92px;
+  line-height: 92px;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #101121 5.6%, rgba(16, 17, 33, 0) 21.5%, rgba(16, 17, 33, 0) 78.5%, #101121 94.4%);
+
+  &::before {
+    content: "";
+    width: 90%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0%;
+    height: 368px;
+    transform: translateY(-50%);
+    width: 100%;
+    background-image: radial-gradient(#2a88d0 0%, rgba(16, 17, 33, 0) 70%);
+  }
+
+  &::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    height: 184px;
+    background: linear-gradient(180deg,
+        #101121 30%,
+        rgba(16, 17, 33, 0) 100%);
+  }
+
+  .bigScreen_header {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+
+    h2 {
+      font-size: 34px;
+      background: linear-gradient(0deg, #c2c7de 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      //   padding: 31px 0 28px;
+    }
+
+    .bigScreen_header_tips {
+      font-size: 25px;
+
+      span {
+        display: inline-flex;
+        vertical-align: middle;
+        margin: 0 12px;
+
+        &.alarm_tips {
+          width: 31px;
+          height: 31px;
+          cursor: pointer;
+          background: url(~static/BigScreen/img/alarm_tips_icon.png) no-repeat center center;
+          background-size: 100%;
+        }
+
+        &.system_management {
+          width: 33px;
+          height: 33px;
+          cursor: pointer;
+          background: url(~static/BigScreen/img/system_management_icon.png) no-repeat center center;
+          background-size: 100%;
+          margin: 0;
+        }
+      }
+
+      .split_line {
+        opacity: 0.44;
+        height: 22px;
+        width: 2px;
+        margin: 2px 0 0;
+        background-color: #fff;
+      }
+    }
+  }
+}
+
+// 地图上菜单
+/deep/ .map_menus_content {
+  position: absolute;
+  right: 446px;
+  bottom: 47px;
+
+  // 隐藏
+  &.map_menus_hide {
+
+    .menus_top_content,
+    .menus_bottom_content {
+      animation: menusTopContentHideAnimate 0.1s linear .5s;
+      animation-fill-mode: forwards;
+    }
+
+    .menus_top {
+      animation: menusTopHideAnimate .5s linear;
+      animation-fill-mode: forwards;
+    }
+
+    .menus_bottom {
+      animation: menusBottomHideAnimate .5s linear;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  // 显示
+  &.map_menus_show {
+
+    .menus_top_content,
+    .menus_bottom_content {
+      visibility: initial;
+    }
+
+    .menus_top {
+      bottom: -100%;
+      animation: menusTopShowAnimate .5s linear;
+      animation-fill-mode: forwards;
+    }
+
+    .menus_bottom {
+      right: -100%;
+      animation: menusBottomShowAnimate .5s linear;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+@keyframes menusTopContentHideAnimate {
+  0% {
+    visibility: initial;
+  }
+
+  100% {
+    visibility: hidden;
+  }
+}
+
+@keyframes menusTopHideAnimate {
+  0% {
+    bottom: 0;
+  }
+
+  100% {
+    bottom: -100%;
+  }
+}
+
+@keyframes menusBottomHideAnimate {
+  0% {
+    right: 0;
+  }
+
+  100% {
+    right: -100%;
+  }
+}
+
+@keyframes menusTopShowAnimate {
+  0% {
+    bottom: -100%;
+  }
+
+  100% {
+    bottom: 0;
+  }
+}
+
+
+@keyframes menusBottomShowAnimate {
+  0% {
+    right: -100%;
+  }
+
+  100% {
+    right: 0;
+  }
+}
+
+/deep/ .map_menus_button {
+  width: 98px;
+  height: 98px;
+  border-radius: 50%;
+  box-shadow: 0 0 15px 2px rgba(16, 17, 33, 0.5);
+  cursor: pointer;
+  background: url(~static/BigScreen/img/map_menus_bg_icon.png) no-repeat center center;
+  background-size: 100%;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    background: url(~static/BigScreen/img/map_menus_radar_icon.png) no-repeat center center;
+    background-size: 100%;
+    animation: clockwiseRotateAnimate 2s linear infinite;
+    transform-origin: 100% 0%;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(~static/BigScreen/img/map_menus_water_icon.png) no-repeat center center;
+    background-size: 100%;
+    z-index: 1;
+  }
+
+  @keyframes clockwiseRotateAnimate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+// 上面菜单
+/deep/ .menus_top_content {
+  position: absolute;
+  bottom: 100%;
+  right: 50%;
+  transform: translateX(50%);
+  overflow: hidden;
+  height: 385px;
+
+  .menus_top {
+    position: relative;
+  }
+
+
+  li {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    cursor: pointer;
+
+    .menus_div {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: url(~static/BigScreen/img/map_menu_bg_icon.png) no-repeat center center;
+      background-size: 100%;
+
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover,
+      &.map_menu_active {
+        background: url(~static/BigScreen/img/map_menu_bg_hover_icon.png) no-repeat center center;
+        background-size: 100%;
+
+        img {
+          filter: drop-shadow(27px 27px #00FA93);
+          transform: translate(-100%, -100%);
+        }
+      }
+    }
+
+    .map_menu_img_content {
+      width: 27px;
+      height: 27px;
+      overflow: hidden;
+    }
+
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 100%;
+    }
+
+
+  }
+}
+
+// 下面菜单
+/deep/ .menus_bottom_content {
+  @extend .menus_top_content;
+  height: auto;
+  width: 238px;
+
+  right: 100%;
+  bottom: 50%;
+  transform: translateY(50%);
+
+  .menus_bottom {
+    position: relative;
+  }
+
+  ul {
+    display: flex;
+
+    li {
+      margin: 0 12px 0 0;
+    }
+  }
+}
+
+/deep/ .map_menus_content_left {
+  @extend .menus_top_content;
+
+  overflow: initial;
+  height: auto;
+  left: 23.85%;
+  right: auto;
+  bottom: 48px;
+
+  li {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &:nth-last-child(1) {
+      margin-bottom: 0;
+    }
+
+    .el-select {
+      position: absolute;
+      left: calc(100% + 12px);
+
+      width: 267px;
+
+      .el-input__inner {
+        color: #fff;
+        height: 64px;
+        border-radius: 32px;
+        padding: 0 54px 0 32px;
+        font-size: 19px;
+        opacity: .6;
+        border: 1px solid #1881C3;
+        background: linear-gradient(51deg, #042037, #044776, #077DCF);
+      }
+
+      .el-input__suffix {
+        right: 27px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+
+// 面板标题
+/deep/ .panel_title {
+  font-size: 19px;
+  font-family: SourceHanSansCN-Regular;
+  color: #fff;
+  // line-height: 25px;
+}
+
+/deep/ .panel_title_second_level {
+  font-size: 15px;
+  color: #d3d9d9;
+  padding-top: 10px;
+}
+
+// 动画
+// toggle_left_9
+// toggle_right_6
+
+// 隐藏A面 显示B面 动画 
+@keyframes showLeftBanimatBA {
+  from {
+    left: 0%;
+    opacity: 1;
+  }
+
+  to {
+    left: -100%;
+    opacity: 0;
+  }
+}
+
+@keyframes showLeftBanimatBB {
+  from {
+    left: 0%;
+    opacity: 0;
+  }
+
+  to {
+    left: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes showRightBanimatBA {
+  from {
+    right: 0%;
+    opacity: 1;
+  }
+
+  to {
+    right: -100%;
+    opacity: 0;
+  }
+}
+
+@keyframes showRightBanimatBB {
+  from {
+    right: 0%;
+    opacity: 0;
+  }
+
+  to {
+    right: 100%;
+    opacity: 1;
+  }
+}
+
+/deep/  .showB {
+  @for $i from 1 through 4 {
+    .toggle_left_#{$i} {
+      animation: showLeftBanimatBA 1.2s linear #{($i - 1) * (1.2 / 4)}s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  @for $i from 5 through 9 {
+    .toggle_left_#{$i} {
+      animation: showLeftBanimatBB 1s linear #{($i - 4) * (1 / 5)}s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  @for $i from 1 through 4 {
+    .toggle_right_#{$i} {
+      animation: showRightBanimatBA 1s linear #{($i - 1) * (1 / 4)}s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  @for $i from 5 through 7 {
+    .toggle_right_#{$i} {
+      animation: showRightBanimatBB 1s linear #{($i - 4) * (1 / 3)}s;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+@keyframes showLeftBanimatAA {
+  from {
+    left: -100%;
+    opacity: 0;
+  }
+
+  to {
+    left: 0%;
+    opacity: 1;
+  }
+}
+
+@keyframes showLeftBanimatAB {
+  from {
+    left: 100%;
+    opacity: 1;
+  }
+
+  to {
+    left: 0%;
+    opacity: 0;
+  }
+}
+
+@keyframes showRightBanimatAA {
+  from {
+    right: -100%;
+    opacity: 0;
+  }
+
+  to {
+    right: 0%;
+    opacity: 1;
+  }
+}
+
+@keyframes showRightBanimatAB {
+  from {
+    right: 100%;
+    opacity: 1;
+  }
+
+  to {
+    right: 0%;
+    opacity: 0;
+  }
+}
+
+/deep/  .showA {
+  @for $i from 1 through 4 {
+    .toggle_left_#{$i} {
+      left: -100%;
+      opacity: 0;
+      animation: showLeftBanimatAA 1s linear #{$i * (1 / 4)}s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  @for $i from 5 through 9 {
+    .toggle_left_#{$i} {
+      left: 100%;
+      opacity: 1;
+      animation: showLeftBanimatAB 1s linear #{($i - 5) * (1 / 4)}s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  @for $i from 1 through 4 {
+    .toggle_right_#{$i} {
+      right: -100%;
+      opacity: 0;
+      animation: showRightBanimatAA 1s linear #{$i * (1 / 4)}s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  @for $i from 5 through 7 {
+    .toggle_right_#{$i} {
+      right: 100%;
+      opacity: 1;
+      animation: showRightBanimatAB 1s linear #{($i - 5) * (1 / 3)}s;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+
+
+// 地图上弹框
+/deep/ .mapboxgl-popup {
+
+  .mapboxgl-popup-tip {
+    display: none;
+  }
+
+  .mapboxgl-popup-content {
+    color: #fff;
+    width: 300px;
+    background: linear-gradient(51deg, rgba(4, 32, 55, 0.6), rgba(4, 71, 118, 0.6), rgba(7, 125, 207, 0.6));
+    padding: 14px 16px 19px;
+    font-size: 15px;
+    font-family: SourceHanSansCN-Regular;
+    line-height: 25px;
+    border-radius: 4px;
+    border: 1px solid #1881C3;
+    position: relative;
+
+    // 泵站 运行情况
+    .pointPumpInfo {
+      // border: 1px solid #1881C3;
+
+      li {
+        width: 33.33333%;
+        float: left;
+        padding: 5px 0;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  // 标注弹框
+  &.pointAnnotations {
+    .mapboxgl-popup-content {
+      width: auto;
+      padding: 10px;
+      font-size: 15px;
+
+    }
+  }
+}
+
+/deep/ .mapboxgl-ctrl-bottom-right {
+  display: none;
+}
+
+
+// 下拉框
+/deep/ .el-select-dropdown {
+  width: 267px;
+  background: linear-gradient(51deg, rgba(4, 32, 55, 0.6), rgba(4, 71, 118, 0.6), rgba(7, 125, 207, 0.6));
+  border: 1px solid #1881C3;
+  border-radius: 7px;
+
+  .popper__arrow {
+    display: none;
+  }
+
+  .el-select-dropdown__item {
+    span {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 16px;
+    }
+
+    &.hover,
+    &:hover,
+    &.selected {
+      background-color: rgba(0, 180, 255, 0.3);
+
+      span {
+        color: #fff;
+      }
+    }
+  }
+}
+
+
+// 地图动画
+/deep/ .map_animation {
+  position: absolute;
+  bottom: 48px;
+  left: 47.4%;
+
+  li {
+    cursor: pointer;
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    background: url(~static/BigScreen/img/animation_pause_icon.png) no-repeat center center, radial-gradient(circle, rgba(25, 47, 103, 0.4), rgba(22, 156, 212, 0.4));
+    background-size: 22px;
+    float: left;
+
+    &:nth-child(1) {
+      margin-right: 18px;
+      background: url(~static/BigScreen/img/animation_play_icon.png) no-repeat center center, radial-gradient(circle, rgba(25, 47, 103, 0.4), rgba(22, 156, 212, 0.4));
+      background-size: 22px;
+    }
+  }
+}
+
+
+// 地图上菜单提示
+/deep/ .map_menus_tooltip {
+  &.is-dark {
+    background-color: transparent;
+  }
+
+  .popper__arrow {
+    display: none;
+  }
+}
